@@ -48,6 +48,14 @@ const run = async()=>{
             review.id = review.insertedId;
             res.send(review)
         }) 
+        
+        app.get('/review/:id', async(req,res)=>{
+            const review_id = req.params.id
+            const query = {review_id}
+            const cursor = reviewCollection.find(query)
+            const review = await cursor.toArray();
+            res.send(review)
+        }) 
     }
     finally{}
 }
