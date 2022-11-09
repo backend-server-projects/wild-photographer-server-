@@ -26,6 +26,14 @@ const run = async()=>{
             res.send(services)
         })
 
+
+        app.post('/services', async(req,res)=>{
+            const getService = req.body;
+            const service = await servicesCollection.insertOne(getService)
+            service.id = service.insertedId;
+            res.send(service)
+        }) 
+
         app.get('/homeServices',async(req,res)=>{
             const query = {}
             const cursor = servicesCollection.find(query)
