@@ -40,6 +40,14 @@ const run = async()=>{
             const result = await cursor;
             res.send(result);
         }) 
+
+
+        app.post('/review', async(req,res)=>{
+            const getReview = req.body;
+            const review = await reviewCollection.insertOne(getReview)
+            review.id = review.insertedId;
+            res.send(review)
+        }) 
     }
     finally{}
 }
